@@ -1,8 +1,22 @@
+import Image from "next/image";
+import Link from "next/link";
+import { Logo } from "../components/Logo";
+import HeroImage from '../public/hero.webp';
+
 export default function Home() {
   return (
-    <div>
-      <h1>Home PAGE Zajebistej Apki do tworzenia tesktów !</h1>
-      <div>index glowny js</div>
+    <div className="w-screen h-screen overflow-hidden flex justify-center items-center relative ">
+      <Image src={HeroImage} alt="Hero" fill className="absolute" />
+      <div className="relative z-10 text-white px-10 py-5 text-center max-w-screen-sm bg-slate-900/90 rounded-md backdrop-blur-sm">
+        <Logo />
+        <p>
+          Knowladge Remeinder and Creation Helper.
+          Begin or stay in None Productive Tutorial Hell.
+        </p>
+        <Link href="/post/new" className="btn" >
+          Try to Help yourself
+        </Link>
+      </div>
     </div>
   );
 }

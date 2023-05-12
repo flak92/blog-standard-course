@@ -5,9 +5,12 @@ export default async function handler(req, res) {
     apiKey: process.env.OPENAI_API_KEY,
   });
   const openai = new OpenAIApi(config);
-  
-  const topic = "Fullstack-JS-Developer most used functions";
-  const keywords = "change from js to ts, best js stacks, next vs express";
+
+
+
+  const {topic, keywords} = req.body;
+  //const topic = "Fullstack-JS-Developer most used functions";
+  //const keywords = "change from js to ts, best js stacks, next vs express";
 
 
 

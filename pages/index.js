@@ -10,11 +10,11 @@ export default function Home() {
       <div className="relative z-10 text-white px-10 py-5 text-center max-w-screen-sm bg-slate-900/90 rounded-md backdrop-blur-sm">
         <Logo />
         <p>
-          Knowladge Remeinder and Creation Helper.
-          Begin or stay in None Productive Tutorial Hell.
+          Your Knowladge Store and Education Helper.
+          Begin now or stay in None Productive learning styles.
         </p>
         <Link href="/post/new" className="btn" >
-          Try to Help yourself
+          Try to Help yourself !
         </Link>
       </div>
     </div>

@@ -50,8 +50,10 @@ export default withApiAuthRequired(async function handler(req, res) {
         When it's possible then try to compare PHP with Javascript, like for exemple: npm = composer, $ = let etc.
         The post should be about ${topic},
         that targets the following comma-separated keywords: ${keywords}. 
-        Content should be formatted in SEO-friendly HTML,
-        limited to the following HTML tags: p, h1, h2, h3, h4, h5, h6, strong, li, ol, ul, i.`,
+        Content should be formatted in SEO-friendly structured HTML,
+        limited to the following HTML tags: p, h1, h2, h3, strong, li, ol, ul, i,
+        tables and everything thats necessary for showing a data structure.
+        Begin with a h1 or h2`,
       },
     ],
     temperature: 0,

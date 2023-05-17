@@ -24,7 +24,7 @@ export default function NewPost(props) {
         body: JSON.stringify({ topic, keywords }),
       });
       const json = await response.json();
-      console.log('RESULT: ', json);
+      console.log('TU JEST CONSOLE LOG Jsona w newJS: ', json);
       if (json?.postId) {
         router.push(`/post/${json.postId}`);
       }

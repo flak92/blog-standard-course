@@ -8,11 +8,18 @@ export const PostsProvider = ({ children }) => {
   const [posts, setPosts] = useState([]);
 
   const setPostsFromSSR = useCallback((postsFromSSR = []) => {
-    console.log(
-      "POSTY OD SSR-SERVERSIDERENDERINGU, TO POST-CONTEXT: ",
-      postsFromSSR
-    );
-    setPosts(postsFromSSR);
+    console.log( "POSTY OD SSR-SERVERSIDERENDERINGU, TO POST-CONTEXT: ", postsFromSSR );
+   // setPosts(postsFromSSR);
+    setPosts(value => {
+      const newPosts = [...value];
+      postsFromSSR.forEach(post => {
+        const exists = newPosts.find((p) => p._id === post._id);
+        if (!exists){
+          newPosts.push(post);
+        }
+      });
+      return newPosts;
+    });
   }, []);
 
   const getPosts = useCallback(async ({lastPostDate}) => {

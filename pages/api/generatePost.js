@@ -42,17 +42,16 @@ export default withApiAuthRequired(async function handler(req, res) {
     messages: [
       {
         role: 'system',
-        content: 'You are a Senior Fullstack JS Developer with knowledge about LAMP tech-stack and you teach only best practices on your blog',
+        content: 'You are a Senior Fullstack Javascript Developer with experience in production of Commercial Projects that shares best practices and know how as code examples to his Junior Developer Students',
       },
       {
         role: 'user',
-        content: `generate a JS teaching best practice SEO friendly post and try to build a lot of lists and table in it.
-        When it's possible then try to compare PHP with Javascript, like for exemple: npm = composer, $ = let etc.
+        content: `generate Javascript teaching best practices structured post using tables, lists and other best teaching practises like visualisation of data.
         The post should be about ${topic},
         that targets the following comma-separated keywords: ${keywords}. 
-        Content should be formatted in SEO-friendly structured HTML,
+        Content should be formatted in structured HTML,
         limited to the following HTML tags: p, h1, h2, h3, strong, li, ol, ul, i,
-        tables and everything thats necessary for showing a data structure.
+        tables and everything that's necessary for most effective teaching.
         Begin with a h1 or h2`,
       },
     ],
@@ -68,16 +67,17 @@ export default withApiAuthRequired(async function handler(req, res) {
     messages: [
       {
         role: 'system',
-        content: 'You are a Senior Fullstack JS Developer with knowledge about LAMP tech-stack and you teach only best practices on your blog',
+        content: 'You are a Senior Fullstack Javascript Developer with experience in production of Commercial Projects that shares best practices and know how as code examples to his Junior Developer Students',
       },
       {
         role: 'user',
-        content: `generate a JS teaching best practice SEO friendly post and try to build a lot of lists and table in it.
-        When it's possible then try to compare PHP with Javascript, like for exemple: npm = composer, $ = let etc.
+        content: `generate Javascript teaching best practices structured post using tables, lists and other best teaching practises like visualisation of data.
         The post should be about ${topic},
         that targets the following comma-separated keywords: ${keywords}. 
-        Content should be formatted in SEO-friendly HTML,
-        limited to the following HTML tags: p, h1, h2, h3, h4, h5, h6, strong, li, ol, ul, i.`,
+        Content should be formatted in structured HTML,
+        limited to the following HTML tags: p, h1, h2, h3, strong, li, ol, ul, i,
+        tables and everything that's necessary for most effective teaching.
+        Begin with a h1 or h2`,
       },
       {
         role: 'assistant',
@@ -99,16 +99,17 @@ export default withApiAuthRequired(async function handler(req, res) {
     messages: [
       {
         role: 'system',
-        content: 'You are a Senior Fullstack JS Developer with knowledge about LAMP tech-stack and you teach only best practices on your blog',
+        content: 'You are a Senior Fullstack Javascript Developer with experience in production of Commercial Projects that shares best practices and know how as code examples to his Junior Developer Students',
       },
       {
         role: 'user',
-        content: `generate a JS teaching best practice SEO friendly post and try to build a lot of lists and table in it.
-        When it's possible then try to compare PHP with Javascript, like for exemple: npm = composer, $ = let etc.
-        The post should be about ${topic},
-        that targets the following comma-separated keywords: ${keywords}. 
-        Content should be formatted in SEO-friendly HTML,
-        limited to the following HTML tags: p, h1, h2, h3, h4, h5, h6, strong, li, ol, ul, i`,
+        content: `generate Javascript teaching best practices structured post using tables, lists and other best teaching practises like visualisation of data.
+            The post should be about ${topic},
+        that targets the following comma-separated keywords: ${keywords}.
+        Content should be formatted in structured HTML,
+        limited to the following HTML tags: p, h1, h2, h3, strong, li, ol, ul, i,
+      tables and everything that's necessary for most effective teaching.
+  Begin with a h1 or h2`,
       },
       {
         role: 'assistant',
@@ -117,7 +118,7 @@ export default withApiAuthRequired(async function handler(req, res) {
       {
         role: 'user',
         content:
-          'Generate SEO-friendly meta description content for the above blog post',
+          'Generate meta description with tools, technologies and framework suggestions to above posts',
       },
     ],
     temperature: 0,

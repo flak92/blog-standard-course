@@ -7,15 +7,22 @@ import { Logo } from "../Logo";
 import { useContext, useEffect } from "react";
 import PostsContext from "../../context/postsContext";
 
-export const AppLayout = ({ children, availableTokens, posts: postsFromSSR, postId }) => {
+
+export const AppLayout = ({ children, availableTokens, posts: postsFromSSR, postId, postCreated }) => {
   const { user } = useUser();
 
-  const {setPostsFromSSR, posts} = useContext(PostsContext);
+  const {setPostsFromSSR, posts, getPosts, noMorePosts} = useContext(PostsContext);
 
   useEffect(
     () => {
       setPostsFromSSR(postsFromSSR);
-    }, [postsFromSSR, setPostsFromSSR]);
+      if (postId) {
+        const exists = postsFromSSR.find(post => post._id === postId);
+        if (!exists) {
+          getPosts({getNewerPosts: true, lastPostDate: postCreated});
+        }
+      }
+    }, [postsFromSSR, setPostsFromSSR, postId, postCreated, getPosts]);
   
 
 
@@ -45,7 +52,12 @@ export const AppLayout = ({ children, availableTokens, posts: postsFromSSR, post
               {post.topic}
             </Link>
           ))}
-          <div className="hover:underline text-sm text-slate-400 text-center cursor-pointer mt-4">Load more posts</div>
+          {!noMorePosts && (
+          <div onClick={ () => {
+           getPosts({lastPostDate: posts[posts.length - 1].created });
+          }
+          } className="hover:underline text-sm text-slate-400 text-center cursor-pointer mt-4">Load more posts</div>
+          )}
         </div>
         <div className="bg-cyan-800 flex items-center gap-2 border-t border-t-black/50 h-20 px-2">
           {!!user ? (

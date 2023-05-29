@@ -24,14 +24,14 @@ try {
     // i znajdź funkcją findOne() w tej kolekcji bazy danych wpis,
     // w którym zawartość indexu "Auth0Id" w Json'ie in Databe jest równa dla sub {user: {sub}} z obiektu user z funkcji getSession(req, res);
 
-    const {lastPostDate} = req.body;
+    const {lastPostDate, getNewerPosts} = req.body;
     // tu "?Destrukturyzujemy?" lastPostDate, czym jest req.body?
 
     const posts = await db.collection('posts').find({
         userId: userProfile._id,
-        created: {$lt: new Date(lastPostDate)}
+        created: {[getNewerPosts ? "$gt" : "$lt"]: new Date(lastPostDate)}
     })
-        .limit(5)
+        .limit(getNewerPosts ? 0 : 5)
         .sort({created: -1})
         .toArray();
 

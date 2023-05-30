@@ -5,9 +5,33 @@ import { ObjectId } from "mongodb";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHashtag } from "@fortawesome/free-solid-svg-icons";
 import { getAppProps } from "../../utils/getAppProps";
+import { useState } from "react";
+import { useRouter } from "next/router";
 
 export default function Post(props) {
   console.log("props czyli składniowe !obiektu wyczytywanego! z dbka: ", props);
+  const router = useRouter();
+  const [showDelateConfirm, setShowDelateConfirm] = useState(false);
+
+const handleDelateConfirm = async () => {
+    try {
+      const response = await fetch(`/api/deletePost`, {
+        method: "POST",
+        headers:{
+          'content-type': "application/json"
+        },
+        body: JSON.stringify({ postId: props.id }),
+      });
+      const json = await response.json();
+        if (json.success) {
+router.replace(`/post/new`);
+        }
+
+    } catch (e) {
+      console.log("Error by deleting post: ", e);
+    }
+}
+
 
   return (
     (
@@ -41,6 +65,35 @@ export default function Post(props) {
             Blog post
           </div>
           <div dangerouslySetInnerHTML={{ __html: props.postContent || '' }} />
+
+
+          <div className="my-4">
+            {!showDelateConfirm &&  (
+              <button
+                className="btn bg-red-600 hover:bg-red-900"
+                onClick={() => setShowDelateConfirm(true)}
+                >DELATE THIS POST
+              </button>
+            )}
+            {!!showDelateConfirm &&
+                <div>
+                  <p className="p-2 bg-red-300 text-ceter"> Are you sure you want to delete this post?! It will disappear forever! </p>
+                        <div className="grid grid-cols-2 gap-2">
+                          <button className="btn bg-stone-600 hover:bg-stone-900"
+                          onClick={() => setShowDelateConfirm(false)}
+                          > Cancel
+                          </button>
+                          <button className="btn bg-red-600 hover:bg-red-900"
+                            onClick={handleDelateConfirm}
+                          > Confirm Delate
+                          </button>
+                        </div>
+                </div>
+                    }
+          </div>
+
+
+
         </div>
       </div>
     )
@@ -76,6 +129,7 @@ export const getServerSideProps = withPageAuthRequired({
     }
     return {
       props: {
+        id: ctx.params.postId,
         postContent: post.postContent,
         title: post.title,
         metaDescription: post.metaDescription,

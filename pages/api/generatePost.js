@@ -42,7 +42,7 @@ export default withApiAuthRequired(async function handler(req, res) {
     messages: [
       {
         role: 'system',
-        content: 'You are a Senior Fullstack Javascript Developer with experience in production of Commercial Projects that shares best practices and know how as code examples to his Junior Developer Students',
+        content: 'You are a Senior Fullstack Javascript Developer with experience in production of Successfull Commercial Projects that shares best practices and know how as code examples to his Junior Developer Students',
       },
       {
         role: 'user',
@@ -51,7 +51,7 @@ export default withApiAuthRequired(async function handler(req, res) {
         that targets the following comma-separated keywords: ${keywords}. 
         Content should be formatted in structured HTML,
         limited to the following HTML tags: p, h1, h2, h3, strong, li, ol, ul, i,
-        tables and everything that's necessary for most effective teaching.
+        tables and everything that's necessary for effective teaching.
         Begin with a h1 or h2`,
       },
     ],
